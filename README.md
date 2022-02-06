@@ -29,6 +29,17 @@ pip install -r requirements.txt
 alembic upgrade head
 ```
 
+### Running the Tests
+Copy the `.env` file to `.test.env` and edit the necessary configuration values
+to match your test environment, and then use the following command to run the
+tests:
+
+```
+make test
+```
+
+You will also need to modify the Makefile to match the database you are using.
+
 ### Starting the App Server
 
 For development, use the following for autoreloading:

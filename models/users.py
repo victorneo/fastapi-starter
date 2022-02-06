@@ -21,7 +21,6 @@ class User(SQLModel, table=True):
     group_id: Optional[int] = Field(foreign_key="usergroup.id")
     group: Optional[UserGroup] = Relationship(back_populates="users")
 
-    profile_id: Optional[int] = Field(foreign_key="profile.id")
     profile: "Profile" = Relationship(back_populates="user")
 
 
@@ -29,4 +28,4 @@ class Profile(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
 
     user_id: int = Field(foreign_key="user.id")
-    user: User = Relationship(back_populates="Profile")
+    user: User = Relationship(back_populates="profile")
