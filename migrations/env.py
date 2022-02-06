@@ -13,7 +13,10 @@ from alembic import context
 
 from models.users import UserGroup, User, Profile
 
-load_dotenv()
+if os.getenv('TEST'):
+    load_dotenv('.test.env')
+else:
+    load_dotenv()
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
