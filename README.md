@@ -16,6 +16,14 @@ This starter template uses sqlite by default for databases. See
 [SQLAlchemy Engine Configuration](https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls)
 to use other databases.
 
+First, create a `.env` file and populate the following variables:
+
+```
+DATABASE_URL=<Insert DB String for SQLAlchemy here>
+```
+
+Next, install the dependencies and run the initial migration.
+
 ```
 pip install -r requirements.txt
 alembic upgrade head
@@ -23,7 +31,7 @@ alembic upgrade head
 
 ### Starting the App Server
 
-For development, run for autoreloading:
+For development, use the following for autoreloading:
 
 ```
 uvicorn app:app --reload
