@@ -19,9 +19,11 @@ async def test_get_user():
     response = client.get('/users/91919')
     assert response.status_code == 404
     u = User(first_name='a', last_name='b', email='a@b.com', password='123')
-    session = await get_session()
-    session.add(u)
-    await session.commit()
+
+    async with await get_session() as s:
+        async with s.begin():
+            s.add(u)
+            await s.commit()
 
     response = client.get('/users/{}'.format(u.id))
     assert response.status_code == 200

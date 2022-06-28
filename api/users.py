@@ -12,10 +12,12 @@ router = APIRouter()
 @router.get("/users/{user_id}")
 async def get_user(user_id: int, response: Response):
     user = None
-    session = await get_session()
-    statement = select(User).where(User.id == user_id)
-    results = await session.execute(statement)
-    user = results.first()
+
+    async with await get_session() as s:
+        async with s.begin():
+            statement = select(User).where(User.id == user_id)
+            results = await s.execute(statement)
+            user = results.first()
 
     if user:
         user = user[0]
