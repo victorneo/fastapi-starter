@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from typing import Optional
 from fastapi import Depends, FastAPI
-from sqlmodel import Session
+from sqlalchemy.orm import Session
 from db.db import init_db, get_session, close_db
 from api import users
 

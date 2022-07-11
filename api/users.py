@@ -1,9 +1,8 @@
 from typing import Optional
 from fastapi import APIRouter, Body, Depends, HTTPException, Response, status
 from db.db import get_session
-from sqlmodel import Session, select
-from sqlalchemy.ext.asyncio import AsyncSession
 from models.users import User
+from sqlalchemy import select
 
 
 router = APIRouter()

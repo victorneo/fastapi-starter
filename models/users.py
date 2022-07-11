@@ -1,31 +1,25 @@
+import bcrypt
 from typing import List, Optional
-from sqlmodel import SQLModel, Field, Relationship
+from sqlalchemy import UniqueConstraint, Column, Integer, String, Boolean
+from models.base import Base
 
 
-class UserGroup(SQLModel, table=True):
-    id: int = Field(default=None, primary_key=True)
-    name: str
-
-    users: List["User"] = Relationship(back_populates="group")
+def hash_password(pw):
+    return bcrypt.hashpw(pw.encode('utf8'), bcrypt.gensalt())
 
 
-class User(SQLModel, table=True):
-    id: int = Field(default=None, primary_key=True)
-    email: str
-    password: str
-    first_name: str
-    last_name: str
-    profile_pic: Optional[str]
-    is_staff: bool = Field(default=False)
-
-    group_id: Optional[int] = Field(foreign_key="usergroup.id")
-    group: Optional[UserGroup] = Relationship(back_populates="users")
-
-    profile: "Profile" = Relationship(back_populates="user")
+def check_password(user, pw):
+    return bcrypt.checkpw(pw.encode('utf8'), user.password.encode('utf8'))
 
 
-class Profile(SQLModel, table=True):
-    id: int = Field(default=None, primary_key=True)
+class User(Base):
+    __tablename__ = 'users'
+    __table_args__ = (UniqueConstraint('email'),)
 
-    user_id: int = Field(foreign_key="user.id")
-    user: User = Relationship(back_populates="profile")
+    id = Column(Integer, primary_key=True)
+    email = Column(String)
+    password = Column(String)
+    first_name = Column(String)
+    last_name = Column(String)
+    profile_pic = Column(String)
+    is_staff = Column(Boolean, default=False)
