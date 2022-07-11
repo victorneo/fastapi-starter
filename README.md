@@ -2,13 +2,9 @@
 
 This starter template includes:
 - [FastAPI](https://fastapi.tiangolo.com/)
-- [SQLModel](https://sqlmodel.tiangolo.com/) for SQLAlchemy + Pydantic models
-- [SQLAlchemy](https://www.sqlalchemy.org/) w/ asyncio
+- [SQLAlchemy](https://www.sqlalchemy.org/) ORM w/ asyncio
 - [Alembic](https://alembic.sqlalchemy.org/en/latest/) for migrations
 - [ipython](https://ipython.org/)
-
-SQLModel uses Python 3's `typing` by default, so you can consider using it for
-the rest of your app as well.
 
 ### Installation
 
