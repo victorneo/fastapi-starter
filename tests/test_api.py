@@ -27,3 +27,4 @@ async def test_get_user():
 
     response = client.get('/users/{}'.format(u.id))
     assert response.status_code == 200
+    assert response.json()['first_name'] == 'a'

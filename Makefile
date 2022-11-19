@@ -3,5 +3,5 @@ all:
 
 test:
 	DATABASE_URL=sqlite+aiosqlite:///testdb.sqlite alembic upgrade head
-	pytest tests/ --envfile .test.env
+	-pytest --cov=. --cov-report term-missing tests/ --envfile .test.env
 	rm testdb.sqlite

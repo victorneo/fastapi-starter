@@ -8,8 +8,8 @@ def hash_password(pw):
     return bcrypt.hashpw(pw.encode('utf8'), bcrypt.gensalt())
 
 
-def check_password(user, pw):
-    return bcrypt.checkpw(pw.encode('utf8'), user.password.encode('utf8'))
+def check_password(hashed, pw):
+    return bcrypt.checkpw(pw.encode('utf8'), hashed.encode('utf8'))
 
 
 class User(Base):

@@ -63,6 +63,7 @@ urllib3 = "1.26.9"
 uvicorn = "0.18.2"
 wcwidth = "0.2.5"
 bcrypt = "^3.2.2"
+pytest-cov = "^4.0.0"
 
 [tool.poetry.dev-dependencies]
 
